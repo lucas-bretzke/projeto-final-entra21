@@ -3,23 +3,23 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     containerImg: {
         flex: 0.6,
         justifyContent: "center",
         height: 100,
-        width: 100,
+        width: 100
     },
     containerList: {
-        flex: 1,
+        flex: 1
     },
     containerAcc: {
         marginHorizontal: 30,
         marginBottom: 20,
         backgroundColor: '#b5890c',
         borderRadius: 20,
-        borderWidth: 0,
+        borderWidth: 0
     },
     imgUser: {
         height: 130,
@@ -30,16 +30,15 @@ export const styles = StyleSheet.create({
 
     },
     input: {
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         padding: 10,
         borderRadius: 15,
         borderWidth: 1,
-        marginBottom: 10,
+        marginBottom: 10
     },
     ViewInp: {
         padding: 10,
-        backgroundColor: '#182e45',
-
+        backgroundColor: '#182e45'
     },
 
     ViewBtn: {
@@ -48,13 +47,13 @@ export const styles = StyleSheet.create({
         backgroundColor: 'red',
         alignItems: 'center',
         marginTop: 3,
-        marginBottom: 3,
+        marginBottom: 3
 
     },
 
     text: {
         margin: 10,
-        color: 'whitw',
+        color: 'white'
 
     },
 });

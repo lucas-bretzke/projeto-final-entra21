@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList } from 'react-native';
-import imagemCoruja from "../../../../assets/coruja.png";
+import imagemCoruja from "../../../assets/coruja.png";
 import { styles } from "./style"
 
 export function AlunosNotasScreen() {
