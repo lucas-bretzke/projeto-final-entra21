@@ -76,7 +76,7 @@ export function TelaProfReact() {
                         <TextInput style={styles.input} placeholder="Data da aula:" />
                         <TextInput style={styles.input} placeholder="Inserir link:" />
                     </View>
-                    <View> <Button style={{ backgroundColor: 'red' }} title="Salvar"></Button></View>
+                    <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button></View>
                 </Accordion>
 
                 <Accordion title="Aula 5" icon="react">
@@ -85,7 +85,7 @@ export function TelaProfReact() {
                         <TextInput style={styles.input} placeholder="Botão a mais:" />
                         <TextInput style={styles.input} placeholder="Link:" />
                     </View>
-                    <View> <Button style={{ backgroundColor: 'red' }} title="Salvar"></Button></View>
+                    <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button> </View>
                 </Accordion>
 
 

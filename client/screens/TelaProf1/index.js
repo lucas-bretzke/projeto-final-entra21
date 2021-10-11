@@ -16,7 +16,7 @@ import UserProf from '../../assets/UserProf.png'
 
 
 
-export function TelaProf() {
+export function TelaProf1() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
