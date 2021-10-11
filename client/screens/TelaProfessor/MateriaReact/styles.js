@@ -20,13 +20,14 @@ export const styles = StyleSheet.create({
         backgroundColor: '#b5890c',
         borderRadius: 20,
         borderWidth: 0,
+        borderBottomWidth: 7,
     },
     imgUser: {
-        height: 130,
-        width: 130,
+        height: 100,
+        width: 100,
         borderRadius: 100,
         alignItems: 'center',
-        marginHorizontal: 115
+        marginHorizontal: 130
 
     },
     input: {
@@ -39,6 +40,7 @@ export const styles = StyleSheet.create({
     ViewInp: {
         padding: 10,
         backgroundColor: '#182e45',
+        borderWidth: 2
 
     },
 
@@ -51,10 +53,15 @@ export const styles = StyleSheet.create({
         marginBottom: 3,
 
     },
+    ButtonSlvr: {
+        alignItems: 'center',
+        padding: 0,
+       
+    },
 
     text: {
         margin: 10,
-        color: 'whitw',
+        fontSize: 16,
 
     },
 });

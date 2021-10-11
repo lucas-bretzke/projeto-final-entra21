@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import UserProf from '../../../assets/UserProf.png';
+import UserProf from '../../../assets/coruja.png';
 
 
 
@@ -29,8 +29,8 @@ export function InicialProfessor() {
         Animated.parallel([
             Animated.spring(offset.y, {
                 toValue: 1,
-                speed: 0.1,
-                bounciness: 600,
+                speed: 600,
+                bounciness: 20,
                 useNativeDriver: false
             }),
             Animated.timing(opacity, {
@@ -76,8 +76,8 @@ export function InicialProfessor() {
                         title="Java"
                         left={props => <List.Icon {...props} icon="language-javascript" />}
                         style={{
-                            backgroundColor: '#ecf2b6',
-                            borderBottomWidth: 2
+                            backgroundColor: '#b38a0e',
+                            borderBottomWidth: 5
                         }}
                         description="Timbó/matutino"
                     >
@@ -102,8 +102,8 @@ export function InicialProfessor() {
                         title="React-native"
                         left={props => <List.Icon {...props} icon="react" />}
                         style={{
-                            backgroundColor: '#b8eff7',
-                            borderBottomWidth: 2,
+                            backgroundColor: '#b38a0e',
+                            borderBottomWidth: 5,
                         }}
                         description="Timbó/matutino"
                     >
@@ -128,8 +128,8 @@ export function InicialProfessor() {
                         title="Inglês "
                         left={props => <List.Icon {...props} icon="ab-testing" />}
                         style={{
-                            backgroundColor: '#f2cfce',
-                            borderBottomWidth: 2
+                            backgroundColor: '#b38a0e',
+                            borderBottomWidth: 5
                         }}
                         onPress={handlePress}
                         description="Noturno"

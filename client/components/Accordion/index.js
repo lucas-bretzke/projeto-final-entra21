@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View,Button } from "react-native";
 import { List } from "react-native-paper";
-import { styles } from '../../screens/TelaProfReact/styles'
+import { styles } from '../../screens/TelaProfessor/MateriaReact/styles';
 
 export function Accordion({ children, title, icon }) {
     const [open, setOpen] = useState(false);

@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import React2 from '../../../assets/react22';
-import { Accordion } from '../../../components';
+import React2 from '../../../assets/react22.png';
+import { Accordion } from '../../../components/Accordion';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -76,16 +77,20 @@ export function MateriaReact() {
                         <TextInput style={styles.input} placeholder="Data da aula:" />
                         <TextInput style={styles.input} placeholder="Inserir link:" />
                     </View>
-                    <View> <Button style={{ backgroundColor: 'red' }} title="Salvar"></Button></View>
+                    <TouchableOpacity style={styles.ButtonSlvr}>
+                        <Text style={styles.text}>Salvar</Text>
+                    </TouchableOpacity>
                 </Accordion>
 
-                <Accordion title="Aula 5" icon="react">
+                <Accordion title="Aula 5 {if else}" icon="react">
                     <View style={styles.ViewInp}>
                         <TextInput style={styles.input} placeholder="Nome da aula:" />
-                        <TextInput style={styles.input} placeholder="Botão a mais:" />
+
                         <TextInput style={styles.input} placeholder="Link:" />
                     </View>
-                    <View> <Button style={{ backgroundColor: 'red' }} title="Salvar"></Button></View>
+                    <TouchableOpacity style={styles.ButtonSlvr}>
+                        <Text style={styles.text}>Salvar</Text>
+                    </TouchableOpacity>
                 </Accordion>
 
 
