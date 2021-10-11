@@ -11,12 +11,12 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import UserProf from '../../assets/UserProf.png'
+import UserProf from '../../../assets/UserProf.png';
 
 
 
 
-export function TelaProf() {
+export function InicialProfessor() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 

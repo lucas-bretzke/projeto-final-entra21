@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import { styles } from "./styles";
-import logoapp from "../../assets/User.png";
+import logoapp from "../../assets/coruja.png";
 
 export function TelaLogin() {
 

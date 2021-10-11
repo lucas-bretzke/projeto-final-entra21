@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import React2 from '../../assets/react22.png'
-import { Accordion } from '../../components/Accordion';
+import React22 from '../../../assets/react22';
+import { Accordion } from '../../../components';
 
 
 
-export function TelaProfReact() {
+export function MateriaReact() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
@@ -56,7 +56,7 @@ export function TelaProfReact() {
 
             >
                 <Image style={styles.imgUser}
-                    source={React2} />
+                    source={React22} />
             </Animated.View>
 
             <Animated.View

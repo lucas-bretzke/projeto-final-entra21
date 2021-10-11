@@ -1,10 +1,10 @@
 import React from 'react';
 import { TelaLogin } from "./screens/TelaLogin";
-import { TelaProf1} from './screens/TelaProf1'
-import { TelaProfReact } from './screens/TelaProfReact';
+import { TelaProfessor } from './screens/Tela Professor/Inicial';
+import { MateriaReact } from './screens/Tela Professor/MateriaReact';
 
 export default function App() {
     return (
-        <TelaProfReact/>
-    ) 
+        <MateriaReact />
+    )
 }
