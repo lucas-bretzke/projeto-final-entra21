@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import React22 from '../../../assets/react22';
+import React2 from '../../../assets/react22';
 import { Accordion } from '../../../components';
 
 
@@ -56,7 +56,7 @@ export function MateriaReact() {
 
             >
                 <Image style={styles.imgUser}
-                    source={React22} />
+                    source={React2} />
             </Animated.View>
 
             <Animated.View
