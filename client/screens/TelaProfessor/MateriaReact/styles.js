@@ -19,14 +19,19 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
         backgroundColor: '#b5890c',
         borderRadius: 20,
+<<<<<<< HEAD:client/screens/TelaProfReact/styles.js
         borderWidth: 0
+=======
+        borderWidth: 0,
+        borderBottomWidth: 7,
+>>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/styles.js
     },
     imgUser: {
-        height: 130,
-        width: 130,
+        height: 100,
+        width: 100,
         borderRadius: 100,
         alignItems: 'center',
-        marginHorizontal: 115
+        marginHorizontal: 130
 
     },
     input: {
@@ -38,7 +43,13 @@ export const styles = StyleSheet.create({
     },
     ViewInp: {
         padding: 10,
+<<<<<<< HEAD:client/screens/TelaProfReact/styles.js
         backgroundColor: '#182e45'
+=======
+        backgroundColor: '#182e45',
+        borderWidth: 2
+
+>>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/styles.js
     },
 
     ViewBtn: {
@@ -50,10 +61,19 @@ export const styles = StyleSheet.create({
         marginBottom: 3
 
     },
+    ButtonSlvr: {
+        alignItems: 'center',
+        padding: 0,
+       
+    },
 
     text: {
         margin: 10,
+<<<<<<< HEAD:client/screens/TelaProfReact/styles.js
         color: 'white'
+=======
+        fontSize: 16,
+>>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/styles.js
 
     },
 });

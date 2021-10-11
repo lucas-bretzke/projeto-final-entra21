@@ -12,12 +12,13 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
-import React2 from '../../assets/react22.png'
-import { Accordion } from '../../components/Accordion';
+import React2 from '../../../assets/react22.png';
+import { Accordion } from '../../../components/Accordion';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
-export function TelaProfReact() {
+export function MateriaReact() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
@@ -76,16 +77,28 @@ export function TelaProfReact() {
                         <TextInput style={styles.input} placeholder="Data da aula:" />
                         <TextInput style={styles.input} placeholder="Inserir link:" />
                     </View>
+<<<<<<< HEAD:client/screens/TelaProfReact/index.js
                     <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button></View>
+=======
+                    <TouchableOpacity style={styles.ButtonSlvr}>
+                        <Text style={styles.text}>Salvar</Text>
+                    </TouchableOpacity>
+>>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/index.js
                 </Accordion>
 
-                <Accordion title="Aula 5" icon="react">
+                <Accordion title="Aula 5 {if else}" icon="react">
                     <View style={styles.ViewInp}>
                         <TextInput style={styles.input} placeholder="Nome da aula:" />
-                        <TextInput style={styles.input} placeholder="Botão a mais:" />
+
                         <TextInput style={styles.input} placeholder="Link:" />
                     </View>
+<<<<<<< HEAD:client/screens/TelaProfReact/index.js
                     <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button> </View>
+=======
+                    <TouchableOpacity style={styles.ButtonSlvr}>
+                        <Text style={styles.text}>Salvar</Text>
+                    </TouchableOpacity>
+>>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/index.js
                 </Accordion>
 
 
