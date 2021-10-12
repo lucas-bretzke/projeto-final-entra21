@@ -9,6 +9,7 @@ import {
     Pressable,
     KeyboardAvoidingView,
     TextInput,
+
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { styles } from './styles';
@@ -47,7 +48,7 @@ export function MateriaReact() {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#182e45', }}>
-            <Animated.View style={styles.containerImg}
+            <Animated.View
                 style={[styles.containerImg, {
                     opacity: opacity,
                     transform: [
@@ -77,13 +78,9 @@ export function MateriaReact() {
                         <TextInput style={styles.input} placeholder="Data da aula:" />
                         <TextInput style={styles.input} placeholder="Inserir link:" />
                     </View>
-<<<<<<< HEAD:client/screens/TelaProfReact/index.js
-                    <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button></View>
-=======
                     <TouchableOpacity style={styles.ButtonSlvr}>
                         <Text style={styles.text}>Salvar</Text>
                     </TouchableOpacity>
->>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/index.js
                 </Accordion>
 
                 <Accordion title="Aula 5 {if else}" icon="react">
@@ -92,17 +89,10 @@ export function MateriaReact() {
 
                         <TextInput style={styles.input} placeholder="Link:" />
                     </View>
-<<<<<<< HEAD:client/screens/TelaProfReact/index.js
-                    <View> <Button style={{ backgroundColor: '#f00' }} title="Salvar"></Button> </View>
-=======
                     <TouchableOpacity style={styles.ButtonSlvr}>
                         <Text style={styles.text}>Salvar</Text>
                     </TouchableOpacity>
->>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/MateriaReact/index.js
                 </Accordion>
-
-
-
 
             </Animated.View>
         </KeyboardAvoidingView>

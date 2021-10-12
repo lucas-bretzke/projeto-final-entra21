@@ -16,11 +16,7 @@ import UserProf from '../../../assets/coruja.png';
 
 
 
-<<<<<<< HEAD:client/screens/TelaProf1/index.js
-export function TelaProf1() {
-=======
 export function InicialProfessor() {
->>>>>>> 7653b0413f896a21882630f86759ca7ec5bed63f:client/screens/TelaProfessor/Inicial/index.js
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
