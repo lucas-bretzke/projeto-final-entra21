@@ -24,10 +24,7 @@ export function MateriaReact() {
     const [opacity] = useState(new Animated.Value(0));
 
 
-    const [expanded, setExpanded] = React.useState(true);
-
-    const handlePress = () => setExpanded(!expanded);
-
+    
     useEffect(() => {
         Animated.parallel([
             Animated.spring(offset.y, {
@@ -48,6 +45,7 @@ export function MateriaReact() {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#182e45', }}>
+           
             <Animated.View
                 style={[styles.containerImg, {
                     opacity: opacity,
@@ -73,7 +71,7 @@ export function MateriaReact() {
             >
 
                 <Accordion title="Criar aula" icon="comment-arrow-right">
-                    <View style={styles.ViewInp}>
+                    <View style={styles.ViewInpP}>
                         <TextInput style={styles.input} placeholder="Nome da aula:" />
                         <TextInput style={styles.input} placeholder="Data da aula:" />
                         <TextInput style={styles.input} placeholder="Inserir link:" />
@@ -84,10 +82,51 @@ export function MateriaReact() {
                 </Accordion>
 
                 <Accordion title="Aula 5 {if else}" icon="react">
-                    <View style={styles.ViewInp}>
-                        <TextInput style={styles.input} placeholder="Nome da aula:" />
-
+                    <View style={styles.ViewInpP}>
                         <TextInput style={styles.input} placeholder="Link:" />
+                    </View>
+
+                    <View>
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Lucas bretzke</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Cleiton Raxta</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>João Cleber</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Kaylaine Nogues</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Lucas bretzke</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Cleiton Raxta</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>João Cleber</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
+
+                    <View style={styles. ViewInp}>
+                        <Text style={styles.textDaPre}>Kaylaine Nogues</Text>
+                        <TextInput style={styles.input} placeholder="P / F" />
+                    </View>
                     </View>
                     <TouchableOpacity style={styles.ButtonSlvr}>
                         <Text style={styles.text}>Salvar</Text>

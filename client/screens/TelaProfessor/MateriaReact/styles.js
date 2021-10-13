@@ -1,10 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center'
-    },
+
     containerImg: {
         flex: 0.6,
         justifyContent: "center",
@@ -30,23 +27,22 @@ export const styles = StyleSheet.create({
 
     },
     input: {
-        backgroundColor: '#fff',
-        padding: 10,
-        borderRadius: 15,
+        backgroundColor: 'white',
+        padding: 5,
+        borderRadius: 10,
         borderWidth: 1,
-        marginBottom: 10
+        width: 50,
+        marginLeft: 2
     },
     ViewInp: {
         padding: 10,
-        backgroundColor: '#182e45',
-        borderWidth: 2
-
+        backgroundColor: '#396361',
+        borderWidth: 1,
     },
 
     ViewBtn: {
         marginHorizontal: 110,
         borderRadius: 20,
-        backgroundColor: 'red',
         alignItems: 'center',
         marginTop: 3,
         marginBottom: 3
@@ -55,11 +51,19 @@ export const styles = StyleSheet.create({
     ButtonSlvr: {
         alignItems: 'center',
         padding: 0,
-
     },
 
     text: {
         margin: 10,
 
     },
+    textDaPre: {
+        flex: 1,
+        padding: 3,
+        margin: 3,
+        marginRight: 90,
+        borderWidth: 1,
+        borderRadius: 5,
+        backgroundColor: 'white',
+    }
 });
