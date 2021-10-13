@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
 
     containerImg: {
         flex: 0.6,
-        justifyContent: "center",
+        justifyContent: 'center',
         height: 100,
         width: 100
     },
@@ -26,13 +26,30 @@ export const styles = StyleSheet.create({
         marginHorizontal: 130
 
     },
+    input1: {
+        backgroundColor: 'white',
+        padding: 10,
+        margin: 3,
+        borderRadius: 10,
+        borderWidth: 1,
+        marginHorizontal: 15
+    },
     input: {
         backgroundColor: 'white',
         padding: 5,
         borderRadius: 10,
         borderWidth: 1,
         width: 50,
-        marginLeft: 2
+        marginLeft: 2,
+    },
+    inputLink: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        padding: 5
+    },
+    ViewInpP: {
+        backgroundColor: '#b5930c',
+        padding: 0
     },
     ViewInp: {
         padding: 10,
@@ -59,9 +76,9 @@ export const styles = StyleSheet.create({
     },
     textDaPre: {
         flex: 1,
-        padding: 3,
+        padding: 5,
         margin: 3,
-        marginRight: 90,
+        marginRight: 60,
         borderWidth: 1,
         borderRadius: 5,
         backgroundColor: 'white',
