@@ -6,11 +6,11 @@ const turmaControllers = require("../controllers/turmaControllers")
 
 router.post("/", multer(multerConfig).single("avatar"), turmaControllers.createTurma);
 
-router.get("/id", turmaControllers.getTurmaById);
+router.get("/:id", turmaControllers.getTurmaById);
 
-router.delete("/id", turmaControllers.deleteTurma);
+router.delete("/:id", turmaControllers.deleteTurma);
 
-router.put("/id", turmaControllers.editTurma)
+router.put("/:id", turmaControllers.editTurma)
 
 router.get("/", turmaControllers.getAllTurma)
 
