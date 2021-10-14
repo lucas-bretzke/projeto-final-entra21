@@ -6,11 +6,11 @@ const usersControllers = require("../controllers/usersControllers")
 
 router.post("/", usersControllers.createUser);
 
-router.get("/email", usersControllers.getUser);
+router.get("/:id", usersControllers.getUser);
 
-router.delete("/email", usersControllers.deleteUser);
+router.delete("/:id", usersControllers.deleteUser);
 
-router.put("/email", usersControllers.updateUser)
+router.put("/:id", usersControllers.updateUser)
 
 router.get("/", usersControllers.getAllUser)
 

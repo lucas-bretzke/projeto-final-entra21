@@ -1,4 +1,4 @@
-const { Materias } = require("../db/models");
+const { Materia } = require("../db/models");
 const createHttpError = require("http-errors");
 const fs = require("fs");
 const path = require("path");
@@ -11,10 +11,10 @@ async function createMateria(req, res, next) {
     const { titulo, descricao, turma_id } = req.body
 
     try {
-        const [materia, created] = await Materias.findOrCreate({
+        const [materia, created] = await Materia.findOrCreate({
             where: { titulo: titulo },
             defaults: { descricao, turma_id }
-        });
+        }); 
 
         if (!created) {
             throw new createHttpError(409, "Materia já criada");
@@ -32,7 +32,7 @@ async function createMateria(req, res, next) {
 async function getAllMateria(req, res, next) {
     try {
 
-        const materias = await Materias.findAll();
+        const materias = await Materia.findAll();
 
         return res.status(200).json(materias)
     } catch (error) {
