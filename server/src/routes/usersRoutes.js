@@ -1,12 +1,12 @@
 const router = require("express").Router();
-// const multer = require("multer");
-// const multerConfig = require("../config/multer");
+
+const authentication = require("../middlewares/authMiddleware");
 const usersControllers = require("../controllers/usersControllers")
 
 
 router.post("/", usersControllers.createUser);
 
-router.get("/email", usersControllers.getUser);
+router.get("/me", authentication(["aluno", "professor"]), usersControllers.getUser);
 
 router.delete("/email", usersControllers.deleteUser);
 

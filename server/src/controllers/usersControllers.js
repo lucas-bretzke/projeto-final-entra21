@@ -54,16 +54,15 @@ async function getAllUser(req, res, next) {
 // rota para pagar um usuário pelo id
 async function getUser(req, res, next) {
     try {
-        const userEmail = req.params.email
+        const userId = res.locals.userId;
 
-        const user = await User.find({ where: { email: userEmail } })
+        const user = await User.findOne({ where: { id: userId } });
 
         if (!user) {
             throw new createHttpError(404, "Usuário não encontrado");
         }
 
-        return res.status(200).json(user)
-
+        return res.json(user)
     } catch (error) {
         console.log(error);
         next(error)

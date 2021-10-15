@@ -2,9 +2,9 @@ const createHttpError = require("http-errors");
 const { User } = require("../db/models");
 const jwt = require("jsonwebtoken");
 
-function createAccessToken(sub) {
+function createAccessToken(sub, permissao) {
     const token = jwt.sign(
-        { sub }, 
+        { sub, permissao }, 
         process.env.TOKEN_SECRET, 
         { expiresIn: process.env.TOKEN_EXPIRATION }
     );
@@ -31,7 +31,7 @@ async function login(req, res, next) {
         }
 
         // Criando o access-token
-        const accessToken = createAccessToken(registeredUser.id);        
+        const accessToken = createAccessToken(registeredUser.id, registeredUser.permissao);        
         
         res.json(accessToken);
     } catch (error) {
