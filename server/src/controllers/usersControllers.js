@@ -74,10 +74,10 @@ async function getUser(req, res, next) {
 // rota para atualizar um usuário
 async function updateUser(req, res, next) {
     try {
-        const userEmail = req.params.id
+        const userId = req.params.id
         const { name, password } = req.body
 
-        const userFound = await User.findOne({ where: { id: userEmail } })
+        const userFound = await User.findOne({ where: { id: userId } })
 
         if (!userFound) {
             throw new createHttpError(404, "Usuário não encontrado");

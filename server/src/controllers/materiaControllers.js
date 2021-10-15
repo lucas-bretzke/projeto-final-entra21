@@ -47,7 +47,7 @@ async function getMateriaById(req, res, next) {
 
     try {
 
-        const materia = await Materias.findOne({ where: { id: meteriaId } })
+        const materia = await Materia.findOne({ where: { id: meteriaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");
@@ -68,7 +68,7 @@ async function editMateria(req, res, next) {
 
     try {
 
-        const materia = await Materias.findOne({ where: { id: meteriaId } })
+        const materia = await Materia.findOne({ where: { id: meteriaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");
@@ -91,7 +91,7 @@ async function deleteMateria(req, res, next) {
     const materiaId = req.params.id
     try {
 
-        const materia = await Materias.findOne({ where: { id: materiaId } })
+        const materia = await Materia.findOne({ where: { id: materiaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");
