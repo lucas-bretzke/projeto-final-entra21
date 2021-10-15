@@ -15,7 +15,7 @@ import { List } from 'react-native-paper';
 import { styles } from './styles';
 import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
