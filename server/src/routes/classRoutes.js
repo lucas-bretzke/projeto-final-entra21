@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
 const multerConfig = require("../config/multer");
-const turmaControllers = require("../controllers/turmaControllers")
+const turmaControllers = require("../controllers/turmasControllers")
 
 
 router.post("/", multer(multerConfig).single("avatar"), turmaControllers.createTurma);

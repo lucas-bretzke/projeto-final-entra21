@@ -5,8 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Turma extends Model {
     static associate(models) {
-      this.belongsToMany(models.User, { through: "turmas_users", foreignKey: "turma_id" });
-      this.hasMany(models.Materia, { foreignKey: "turma_id" });
+      this.belongsToMany(models.User, { through: "turmas_users", foreignKey: "turma_id", as: "users" });      
     }
   };
   Turma.init({
@@ -15,10 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    name: {
+    nome: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    descricao: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    icone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Turma',

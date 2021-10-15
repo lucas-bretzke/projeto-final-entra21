@@ -23,6 +23,7 @@ app.use("/api/users", require("./routes/usersRoutes"));
 app.use("/api/class", require("./routes/classRoutes"));
 app.use("/api/nota", require("./routes/notaRoutes"));
 app.use("/api/materia", require("./routes/materiaRoutes"));
+app.use("/api/turmas", require("./routes/turmasRoutes"));
 app.use("/api/prova", require("./routes/provaRoutes"));
 
 // Definindo o middleware de tratamento de erros

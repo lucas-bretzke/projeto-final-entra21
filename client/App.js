@@ -1,11 +1,11 @@
 import React from 'react';
-import { TelaLogin } from "./screens/TelaLogin";
-import { InicialProfessor } from './screens/TelaProfessor/Inicial';
-import { MateriaReact } from './screens/TelaProfessor/MateriaReact';
-import { CriarProvas } from './screens/TelaProfessor/CriarProvas';
+import { AuthProvider } from './contexts/AuthContext';
+import { Router } from './routes';
 
 export default function App() {
     return (
-        <  MateriaReact />
+        <AuthProvider>
+            <Router />
+        </AuthProvider>
     )
 }
