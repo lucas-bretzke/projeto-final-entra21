@@ -1,9 +1,10 @@
 {
-  "webpackServerPort": 19007,
-  "devToolsPort": 19003,
-  "expoServerPort": 19001,
-  "packagerPort": 19001,
-  "expoServerNgrokUrl": "https://yr-kiu.anonymous.client.exp.direct",
-  "packagerNgrokUrl": "https://packager.yr-kiu.anonymous.client.exp.direct",
-  "ngrokPid": 3232
+  "webpackServerPort": 19006,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "packagerPid": null
 }
