@@ -16,7 +16,7 @@ import { styles } from './styles';
 import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { TextInputMask } from 'react-native-masked-text';
 
 
 export function MateriaScreen() {
@@ -81,63 +81,56 @@ export function MateriaScreen() {
                     </TouchableOpacity>
                 </Accordion>
 
-                <Accordion title="Aula 5 {if else}" icon="react">
+                <Accordion title="Aula 3 {if else}" description="10/06" icon="react">
                    
                     <View style={styles.ViewInP}>
                         <TextInput style={styles.inputLink} placeholder="InserirLink:" />
                     </View>
-
-                    <View>
-                        
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Lucas bretzke</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Cleiton Raxta</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>João Cleber</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Kaylaine Nogues</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Lucas bretzke</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Cleiton Raxta</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>João Cleber</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-
-                        <View style={styles.ViewInp}>
-                            <Text style={styles.textDaPre}>Kaylaine Nogues</Text>
-                            <TextInput style={styles.input} placeholder="P / F" />
-                        </View>
-                      
-                    </View>
+               
                     <TouchableOpacity style={styles.ButtonSlvr}>
                         <Text style={styles.text}>Salvar</Text>
                     </TouchableOpacity>
                   
                 </Accordion>
 
+                <Accordion title="Aula 2 {if else}" description="09/06" icon="react">
+                   
+                   <View style={styles.ViewInP}>
+                       <TextInput style={styles.inputLink} placeholder="InserirLink:" />
+                   </View>
+              
+                   <TouchableOpacity style={styles.ButtonSlvr}>
+                       <Text style={styles.text}>Salvar</Text>
+                   </TouchableOpacity>
+                 
+               </Accordion>
+
+               <Accordion title="Aula 1 {if else}" description="08/06" icon="react">
+                   
+                   <View style={styles.ViewInP}>
+                       <TextInput style={styles.inputLink} placeholder="InserirLink:" />
+                   </View>
+              
+                   <TouchableOpacity style={styles.ButtonSlvr}>
+                       <Text style={styles.text}>Salvar</Text>
+                   </TouchableOpacity>
+                 
+               </Accordion>
+
             </Animated.View>
         </KeyboardAvoidingView>
     );
 };
+
+/*
+<View>
+                        
+<View style={styles.ViewInp}>
+    <Text style={styles.textDaPre}>Lucas bretzke</Text>
+    <TextInput style={styles.input} placeholder="P / F" />
+</View>
+
+</View>
+
+
+*/

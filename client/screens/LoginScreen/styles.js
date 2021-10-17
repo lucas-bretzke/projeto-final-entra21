@@ -6,16 +6,23 @@ export const styles = StyleSheet.create({
         backgroundColor: '#003f73',
         justifyContent: "center",
         alignItems: "center",
+
     },
 
     containerLogo: {
         flex: 1,
         justifyContent: "center",
     },
-    
+
+    ViewInput: {
+        flexDirection: 'row',
+        alignItems: "center",
+        marginBottom: 20,
+    },
+
     container2: {
         backgroundColor: '#003f73',
-        width: '90%',
+        width: '88%',
         flex: 1,
         borderRadius: 7,
         padding: 0,
@@ -23,11 +30,11 @@ export const styles = StyleSheet.create({
     },
 
     input: {
-        width: '90%',
+        width: '86%',
         backgroundColor: 'white',
         borderRadius: 3,
-        margin: 10,
         padding: 10,
+        marginLeft: 10,
     },
 
     textoBotao: {
@@ -38,7 +45,7 @@ export const styles = StyleSheet.create({
     },
 
     textLink: {
-        fontSize: 10,
+        fontSize: 12,
     },
 
     botao1: {

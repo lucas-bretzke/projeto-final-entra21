@@ -11,6 +11,7 @@ import {
     Keyboard,
 } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
+import { AntDesign } from '@expo/vector-icons';
 
 import { styles } from "./styles";
 
@@ -20,7 +21,7 @@ export function LoginScreen() {
 
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
-    const [logo] = useState(new Animated.ValueXY({ x: 155, y: 155 }));
+    const [logo] = useState(new Animated.ValueXY({ x: 130, y: 130 }));
 
     useEffect(() => {
         KeyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -45,13 +46,13 @@ export function LoginScreen() {
         Animated.parallel([
             Animated.timing(logo.x, {
                 toValue: 70,
-                duration: 100,
+                duration: 1000,
                 useNativeDriver: false
             }),
 
             Animated.timing(logo.y, {
                 toValue: 70,
-                duration: 100,
+                duration: 1000,
                 useNativeDriver: false
             }),
         ]).start();
@@ -60,13 +61,13 @@ export function LoginScreen() {
     function keyboardDidHide() {
         Animated.parallel([
             Animated.timing(logo.x, {
-                toValue: 155,
+                toValue: 130,
                 duration: 100,
                 useNativeDriver: false
             }),
 
             Animated.timing(logo.y, {
-                toValue: 155,
+                toValue: 130,
                 duration: 100,
                 useNativeDriver: false
             }),
@@ -90,10 +91,12 @@ export function LoginScreen() {
                 <Animated.Image
                     style={{
                         borderRadius: 100,
+                        marginHorizontal: 100,
                         width: logo.x,
                         height: logo.y
                     }}
                     source={{ uri: "https://i.imgur.com/8gOfVoj.jpg" }} />
+
             </View>
 
             <Animated.View
@@ -105,21 +108,25 @@ export function LoginScreen() {
                 }
                 ]}
             >
+                <View style={styles.ViewInput}>
+                    <AntDesign name="team" size={30} color="white" />
 
-                <TextInput style={styles.input}
-                    placeholder="Email:"
-                    autoCorrect={false}
-                    value={email}
-                    onChangeText={setEmail}
-                />
-
-                <TextInput style={styles.input}
-                    placeholder="Senha:"
-                    autoCorrect={false}
-                    value={password}
-                    onChangeText={setPassword}
-                />
-
+                    <TextInput style={styles.input}
+                        placeholder="Email:"
+                        autoCorrect={false}
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                </View>
+                <View style={styles.ViewInput}>
+                    <AntDesign name="lock1" size={30} color="white" />
+                    <TextInput style={styles.input}
+                        placeholder="Senha:"
+                        autoCorrect={false}
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                </View>
                 <TouchableOpacity style={styles.botao1}>
                     <Text style={styles.textLink}>Esqueceu a senha?</Text>
                 </TouchableOpacity>

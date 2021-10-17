@@ -1,5 +1,6 @@
 import React from 'react';
 import { MateriaScreen } from './screens/ProfessorScreens/MateriaScreen';
+import { ProfessorHomeScreen } from './screens/ProfessorScreens/ProfessorHomeScreen';
 
 export default function App() {
     return (

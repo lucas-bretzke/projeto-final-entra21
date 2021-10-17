@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         flex: 1
     },
     containerAcc: {
-        marginHorizontal: 20,
+        marginHorizontal: 30,
         marginBottom: 20,
         backgroundColor: '#b5890c',
         borderRadius: 20,
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     },
     ViewInpP: {
         backgroundColor: '#b5930c',
-        padding: 0
+        padding: 5
     },
     ViewInp: {
         padding: 10,
@@ -57,30 +57,10 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
     },
 
-    ViewBtn: {
-        marginHorizontal: 110,
-        borderRadius: 20,
-        alignItems: 'center',
-        marginTop: 3,
-        marginBottom: 3
-
-    },
     ButtonSlvr: {
         alignItems: 'center',
-        padding: 0,
+        padding: 8,
     },
 
-    text: {
-        margin: 10,
-
-    },
-    textDaPre: {
-        flex: 1,
-        padding: 5,
-        margin: 3,
-        marginRight: 60,
-        borderWidth: 1,
-        borderRadius: 5,
-        backgroundColor: 'white',
-    }
+  
 });
