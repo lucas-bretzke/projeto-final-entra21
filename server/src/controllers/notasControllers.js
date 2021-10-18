@@ -1,4 +1,4 @@
-const { Nota, Prova } = require("../db/models");
+const { Nota, Prova, User } = require("../db/models");
 const createHttpError = require("http-errors");
 const fs = require("fs");
 const path = require("path");
@@ -8,22 +8,18 @@ const path = require("path");
 
 //rota para ciar nota
 async function createNotas(req, res, next) {
-    const { alunoId, valor, idProva } = req.body
+    const { user_id, nota, prova_id } = req.body
 
     try {
 
-        const provaId = Prova.findOne({where: {id: idProva}})
+        // const prova = await Nota.findAll({where: {prova_id: prova_id}})
+        // const user = await Nota.findAll({where: {user_id: user_id}})
 
-        const [nota, created] = await Nota.findOrCreate({
-            where: { id_aluno: alunoId } && { id_prova: provaId },
-            defaults: { valor, provaId, alunoId }
-        });
+        
 
-        if (!created) {
-            throw new createHttpError(409, "Nota já criada");
-        }
+        const notas = await Nota.create({ user_id, nota: nota, prova_id })
 
-        return res.status(201).json(nota)
+        return res.status(201).json(notas)
 
     } catch (error) {
         console.log(error)
@@ -45,18 +41,37 @@ async function getAllNotas(req, res, next) {
 }
 
 //rota para pegar uma nota por id
-async function getNotasById(req, res, next) {
+async function getNotasByProvaId(req, res, next) {
     const id = req.params.id
 
     try {
 
-        const nota = await Nota.findOne({ where: { aluno_id: id } || { prova_id : id} })
+        const provas = await Nota.findAll({ where: { prova_id: id }})
 
-        if (!nota) {
+        if (!provas) {
             throw new createHttpError(404, "Nota não encontrada");
         }
 
-        return res.status(200).json(nota)
+        return res.status(200).json(provas)
+
+    } catch (error) {
+        console.log(error)
+        next(error)
+    }
+}
+
+async function getNotasByUserId(req, res, next) {
+    const id = req.params.id
+
+    try {
+
+        const users = await Nota.findAll({ where: { user_id: id }})
+
+        if (!users) {
+            throw new createHttpError(404, "Nota não encontrada");
+        }
+
+        return res.status(200).json(users)
 
     } catch (error) {
         console.log(error)
@@ -66,19 +81,19 @@ async function getNotasById(req, res, next) {
 
 //rota para editar nota
 async function editNotas(req, res, next) {
-    const { valor, provaId, alunoId } = req.body
+    const { nota, prova_id, user_id } = req.body
 
     try {
 
-        const nota = await Nota.findOne({ where: { prova_id: provaId } && { aluno_id: alunoId } })
+        const notas = await Nota.findOne({ where: { prova_id: prova_id } && { user_id: user_id } })
 
-        if (!nota) {
+        if (!notas) {
             throw new createHttpError(404, "Nota não encontrada");
         }
 
-        Object.assign(nota, { valor })
+        Object.assign(notas, { nota })
 
-        await nota.save()
+        await notas.save()
 
         return res.status(200).end()
 
@@ -90,11 +105,11 @@ async function editNotas(req, res, next) {
 
 //rota para deletar uma nota
 async function deleteNotas(req, res, next) {
-    const { alunoId, provaId } = req.body
+    const { user_id, prova_id } = req.body
 
     try {
 
-        const nota = await Nota.findOne({ where: { aluno_id: alunoId } && { prova_id: provaId } })
+        const nota = await Nota.findOne({ where: { user_id: user_id } && { prova_id: prova_id } })
 
         if (!nota) {
             throw new createHttpError(404, "Nota não encontrada");
@@ -114,7 +129,8 @@ async function deleteNotas(req, res, next) {
 module.exports = {
     createNotas,
     getAllNotas,
-    getNotasById,
+    getNotasByProvaId,
+    getNotasByUserId,
     editNotas,
     deleteNotas
 }

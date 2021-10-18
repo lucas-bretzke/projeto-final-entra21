@@ -27,7 +27,7 @@ module.exports = {
       nota: {
         allowNull: false,
         type: Sequelize.DECIMAL
-      },   
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
