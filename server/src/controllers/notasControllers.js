@@ -113,7 +113,7 @@ async function deleteNotas(req, res, next) {
 
         if (!nota) {
             throw new createHttpError(404, "Nota não encontrada");
-        }
+        } 
 
         await nota.destroy()
 
