@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    pro_id: {
+    prova_id: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Nota',
+    tableName: "notas"
   });
   return Nota;
 };

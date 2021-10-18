@@ -6,11 +6,13 @@ const notasControllers = require("../controllers/notasControllers")
 
 router.post("/", multer(multerConfig).single("avatar"), notasControllers.createNotas);
 
-router.get("/:id", notasControllers.getNotasById);
+router.get("/:id/prova", notasControllers.getNotasByProvaId);
 
-router.delete("/:id", notasControllers.deleteNotas);
+router.get("/:id/user", notasControllers.getNotasByUserId);
 
-router.put("/:id", notasControllers.editNotas)
+router.delete("/", notasControllers.deleteNotas);
+
+router.put("/", notasControllers.editNotas)
 
 router.get("/", notasControllers.getAllNotas)
 

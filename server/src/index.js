@@ -9,8 +9,6 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-const db = require("./db/models");
-
 // Definindo os middlewares de request
 app.use(cors());
 app.use(express.json());
