@@ -8,9 +8,9 @@ router.post("/", usersControllers.createUser);
 
 router.get("/me", authentication(["aluno", "professor"]), usersControllers.getUser);
 
-router.delete("/email", usersControllers.deleteUser);
+router.delete("/:id", usersControllers.deleteUser);
 
-router.put("/email", usersControllers.updateUser)
+router.put("/:id", usersControllers.updateUser)
 
 router.get("/", usersControllers.getAllUser)
 

@@ -1,4 +1,4 @@
-const { Materias } = require("../db/models");
+const { Materia } = require("../db/models");
 const createHttpError = require("http-errors");
 const fs = require("fs");
 const path = require("path");
@@ -11,10 +11,10 @@ async function createMateria(req, res, next) {
     const { titulo, descricao, turma_id } = req.body
 
     try {
-        const [materia, created] = await Materias.findOrCreate({
+        const [materia, created] = await Materia.findOrCreate({
             where: { titulo: titulo },
             defaults: { descricao, turma_id }
-        });
+        }); 
 
         if (!created) {
             throw new createHttpError(409, "Materia já criada");
@@ -32,7 +32,7 @@ async function createMateria(req, res, next) {
 async function getAllMateria(req, res, next) {
     try {
 
-        const materias = await Materias.findAll();
+        const materias = await Materia.findAll();
 
         return res.status(200).json(materias)
     } catch (error) {
@@ -47,7 +47,7 @@ async function getMateriaById(req, res, next) {
 
     try {
 
-        const materia = await Materias.findOne({ where: { id: meteriaId } })
+        const materia = await Materia.findOne({ where: { id: meteriaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");
@@ -68,7 +68,7 @@ async function editMateria(req, res, next) {
 
     try {
 
-        const materia = await Materias.findOne({ where: { id: meteriaId } })
+        const materia = await Materia.findOne({ where: { id: meteriaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");
@@ -91,7 +91,7 @@ async function deleteMateria(req, res, next) {
     const materiaId = req.params.id
     try {
 
-        const materia = await Materias.findOne({ where: { id: materiaId } })
+        const materia = await Materia.findOne({ where: { id: materiaId } })
 
         if (!materia) {
             throw new createHttpError(404, "Matéria não encontrada");

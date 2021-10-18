@@ -21,8 +21,9 @@ app.use(morgan("dev"));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/users", require("./routes/usersRoutes"));
 app.use("/api/class", require("./routes/classRoutes"));
-app.use("/api/nota", require("./routes/notaRoutes"));
 app.use("/api/materia", require("./routes/materiaRoutes"));
+app.use("/api/aula", require("./routes/aulaRoutes"));
+app.use("/api/nota", require("./routes/notaRoutes"));
 app.use("/api/turmas", require("./routes/turmasRoutes"));
 app.use("/api/prova", require("./routes/provaRoutes"));
 
@@ -32,5 +33,4 @@ app.use(require("./middlewares/errorMiddleware"));
 // Definindo a rota da documentação
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(PORT, () => console.log("Server running in: " + PORT));
-
+app.listen(PORT, () => console.log("Server running in: " + PORT)); 

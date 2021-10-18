@@ -8,12 +8,12 @@ const path = require("path");
 
 //rota para ciar aula
 async function createTurma(req, res, next) {
-    const { nome } = req.body
+    const {nome} = req.body
     const file = req.file
 
     try {
         const [turma, created] = await Turma.findOrCreate({
-            where: { nome: nome },
+            where: { name: nome },
             defaults: {  }
         });
 
@@ -69,7 +69,7 @@ async function getTurmaById(req, res, next) {
 //rota para aditar aula
 async function editTurma(req, res, next) {
     const turmaId = req.params.id;
-    const { nome } = req.body
+    const { name } = req.body
 
     try {
 
@@ -79,7 +79,7 @@ async function editTurma(req, res, next) {
             throw new createHttpError(404, "Turma não encontrada");
         }
 
-        Object.assign(turma, { nome })
+        Object.assign(turma, { name })
 
         await turma.save()
 

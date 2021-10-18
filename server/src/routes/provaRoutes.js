@@ -4,13 +4,13 @@ const multerConfig = require("../config/multer");
 const provaControllers = require("../controllers/provaControllers")
 
 
-router.post("/", multer(multerConfig).single("avatar"), provaControllers.createProva);
+router.post("/", provaControllers.createProva);
 
-router.get("/id", provaControllers.getProvaById);
+router.get("/:id", provaControllers.getProvaById);
 
-router.delete("/id", provaControllers.deleteProva);
+router.delete("/:id", provaControllers.deleteProva);
 
-router.put("/id", provaControllers.editProva)
+router.put("/:id", provaControllers.editProva)
 
 router.get("/", provaControllers.getAllProva)
 

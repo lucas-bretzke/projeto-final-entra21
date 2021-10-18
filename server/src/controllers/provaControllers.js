@@ -1,4 +1,4 @@
-const { Provas } = require("../db/models");
+const { Prova } = require("../db/models");
 const createHttpError = require("http-errors");
 const fs = require("fs");
 const path = require("path");
@@ -11,7 +11,7 @@ async function createProva(req, res, next) {
     const { titulo, descricao, materia_id } = req.body
 
     try {
-        const [prova, created] = await Provas.findOrCreate({
+        const [prova, created] = await Prova.findOrCreate({
             where: { titulo: titulo },
             defaults: { descricao, materia_id }
         });
@@ -32,7 +32,7 @@ async function createProva(req, res, next) {
 async function getAllProva(req, res, next) {
     try {
 
-        const prova = await Provas.findAll();
+        const prova = await Prova.findAll();
 
         return res.status(200).json(prova)
     } catch (error) {
@@ -47,7 +47,7 @@ async function getProvaById(req, res, next) {
 
     try {
 
-        const prova = await Provas.findOne({ where: { id: provaId } })
+        const prova = await Prova.findOne({ where: { id: provaId } })
 
         if (!prova) {
             throw new createHttpError(404, "Prova não encontrada");
@@ -68,7 +68,7 @@ async function editProva(req, res, next) {
 
     try {
 
-        const prova = await Provas.findOne({ where: { id: provaId } })
+        const prova = await Prova.findOne({ where: { id: provaId } })
 
         if (!prova) {
             throw new createHttpError(404, "Prova não encontrada");
@@ -91,7 +91,7 @@ async function deleteProva(req, res, next) {
     const provaId = req.params.id
     try {
 
-        const prova = await Provas.findOne({ where: { id: provaId } })
+        const prova = await Prova.findOne({ where: { id: provaId } })
 
         if (!prova) {
             throw new createHttpError(404, "Prova não encontrada");

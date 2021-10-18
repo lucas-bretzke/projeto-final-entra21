@@ -53,10 +53,10 @@ async function getAllUser(req, res, next) {
 
 // rota para pagar um usuário pelo id
 async function getUser(req, res, next) {
-    try {
-        const userId = res.locals.userId;
+    const userId = req.params.id
 
-        const user = await User.findOne({ where: { id: userId } });
+    try {
+        const user = await User.findAll({ where: { id: userId } })
 
         if (!user) {
             throw new createHttpError(404, "Usuário não encontrado");
@@ -72,10 +72,10 @@ async function getUser(req, res, next) {
 // rota para atualizar um usuário
 async function updateUser(req, res, next) {
     try {
-        const userEmail = req.params.email
+        const userId = req.params.id
         const { name, password } = req.body
 
-        const userFound = await User.findOne({ where: { email: userEmail } })
+        const userFound = await User.findOne({ where: { id: userId } })
 
         if (!userFound) {
             throw new createHttpError(404, "Usuário não encontrado");
@@ -97,9 +97,9 @@ async function updateUser(req, res, next) {
 async function deleteUser(req, res, next) {
 
     try {
-        const userEmail = req.params.email;
+        const userId = req.params.id;
 
-        const userFound = await User.findOne({ where: { email: userEmail } });
+        const userFound = await User.findOne({ where: { id: userId } });
 
         if (!userFound) {
             throw new createHttpError(404, "Usuário não encontrado");

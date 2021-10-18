@@ -1,4 +1,4 @@
-const { Notas, Provas, Alunos } = require("../db/models");
+const { Nota, Prova } = require("../db/models");
 const createHttpError = require("http-errors");
 const fs = require("fs");
 const path = require("path");
@@ -12,9 +12,9 @@ async function createNotas(req, res, next) {
 
     try {
 
-        const provaId = Provas.findOne({where: {id: idProva}})
+        const provaId = Prova.findOne({where: {id: idProva}})
 
-        const [nota, created] = await Notas.findOrCreate({
+        const [nota, created] = await Nota.findOrCreate({
             where: { id_aluno: alunoId } && { id_prova: provaId },
             defaults: { valor, provaId, alunoId }
         });
@@ -35,7 +35,7 @@ async function createNotas(req, res, next) {
 async function getAllNotas(req, res, next) {
     try {
 
-        const notas = await Notas.findAll();
+        const notas = await Nota.findAll();
 
         return res.status(200).json(notas)
     } catch (error) {
@@ -50,7 +50,7 @@ async function getNotasById(req, res, next) {
 
     try {
 
-        const nota = await Notas.findOne({ where: { aluno_id: id } || { prova_id : id} })
+        const nota = await Nota.findOne({ where: { aluno_id: id } || { prova_id : id} })
 
         if (!nota) {
             throw new createHttpError(404, "Nota não encontrada");
@@ -70,7 +70,7 @@ async function editNotas(req, res, next) {
 
     try {
 
-        const nota = await Notas.findOne({ where: { prova_id: provaId } && { aluno_id: alunoId } })
+        const nota = await Nota.findOne({ where: { prova_id: provaId } && { aluno_id: alunoId } })
 
         if (!nota) {
             throw new createHttpError(404, "Nota não encontrada");
@@ -94,7 +94,7 @@ async function deleteNotas(req, res, next) {
 
     try {
 
-        const nota = await Notas.findOne({ where: { aluno_id: alunoId } && { prova_id: provaId } })
+        const nota = await Nota.findOne({ where: { aluno_id: alunoId } && { prova_id: provaId } })
 
         if (!nota) {
             throw new createHttpError(404, "Nota não encontrada");
