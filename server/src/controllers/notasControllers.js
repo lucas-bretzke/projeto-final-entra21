@@ -106,7 +106,7 @@ async function editNotas(req, res, next) {
 //rota para deletar uma nota
 async function deleteNotas(req, res, next) {
     const { user_id, prova_id } = req.body
-
+   
     try {
 
         const nota = await Nota.findOne({ where: { user_id: user_id } && { prova_id: prova_id } })
