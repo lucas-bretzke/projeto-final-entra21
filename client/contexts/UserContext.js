@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { SplashScreen } from "../screens/SplashScreen";
-import { api } from "../services";
+import { api } from "../services/api";
 import { useAuth } from "./AuthContext";
 
 const UserContext = React.createContext();
@@ -35,7 +35,7 @@ export function UserProvider({ children }) {
             let user;
 
             try {
-                user = (await api.get("/users")).data; 
+                user = (await api.get("/users/me")).data; 
                 
                 dispatch({ type: "GET_USER", user });
             } catch (err) {                

@@ -1,7 +1,7 @@
 import React from "react";
 import * as SecureStore from "expo-secure-store";
-import { api } from "../services";
 import { SplashScreen } from "../screens/SplashScreen";
+import { api } from "../services/api";
 
 const AuthContext = React.createContext();
 
@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
         restoreToken();
     }, []);
     
-    const memoContext = React.useMemo(() => ({
+    const authActions = React.useMemo(() => ({
         signIn: async (email, password) => {
             try {                                                
                 const accessToken = (await api.post("/auth/login", { email, password })).data;                
@@ -68,17 +68,10 @@ export function AuthProvider({ children }) {
                 throw err;                           
             }            
         },
-        signUp: async (user) => {
-            try {                                                        
-                await api.post("/users", user);                                                                                
-            } catch (err) {
-                console.log(err);
-                throw err;                           
-            }         
-        },
         signOut: () => {
             try {
                 SecureStore.deleteItemAsync("access-token");
+                api.defaults.headers.common["Authorization"] = null;
             } catch (err) {
                 console.log(err);
             }
@@ -92,7 +85,7 @@ export function AuthProvider({ children }) {
     }
     
     return (
-        <AuthContext.Provider value={{ state, memoContext}}>
+        <AuthContext.Provider value={{ state, authActions }}>
             { children }
         </AuthContext.Provider>
     );

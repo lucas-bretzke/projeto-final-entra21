@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     descricao: {
       type: DataTypes.STRING,
       allowNull: false,
-    }, 
+    },
+    icone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Materia',

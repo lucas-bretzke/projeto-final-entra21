@@ -1,7 +1,13 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "../screens/AlunoInicialScreen";
-import { TelaLoginScreen } from "../screens/TelaLoginScreen";
+import { ProfessorHomeScreen } from "../screens/ProfessorScreens/ProfessorHomeScreen";
+import { CriarProvasScreen } from "../screens/ProfessorScreens/CriarProvasScreen";
+import { MateriaScreen } from "../screens/ProfessorScreens/MateriaScreen";
+import { AlunoHomeScreen } from "../screens/AlunoScreens/AlunoHomeScreen";
+import { AlunosFrequenciaScreen } from "../screens/AlunoScreens/Frequencia";
+import { AlunosMaterialScreen } from "../screens/AlunoScreens/Material";
+import { AlunosNotasScreen } from "../screens/AlunoScreens/Notas";
+import { useUser } from "../contexts/UserContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +17,7 @@ function ProfessorRoutes() {
             initialRouteName="SignIn"
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: colors.primary
+                    backgroundColor: "black"
                 },
                 headerTintColor: "#fff",
                 headerTitleStyle: {
@@ -21,13 +27,14 @@ function ProfessorRoutes() {
                 headerTitleAlign: "center"
             }}>
             <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ headerShown: false }} />
+                name="HomeProfessor"
+                component={ProfessorHomeScreen} />
             <Stack.Screen
-                name="Login"
-                component={TelaLoginScreen} 
-                options={{ headerShown: false }} />
+                name="CriarProvas"
+                component={CriarProvasScreen} />
+            <Stack.Screen
+                name="MateriaReact"
+                component={MateriaScreen}  />
         </Stack.Navigator>
     );
 }
@@ -38,7 +45,7 @@ function AlunosRoutes() {
             initialRouteName="SignIn"
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: colors.primary
+                    backgroundColor: "black"
                 },
                 headerTintColor: "#fff",
                 headerTitleStyle: {
@@ -48,24 +55,29 @@ function AlunosRoutes() {
                 headerTitleAlign: "center"
             }}>
             <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ headerShown: false }} />
+                name="AlunoHome"
+                component={AlunoHomeScreen}/>
             <Stack.Screen
-                name="Login"
-                component={TelaLoginScreen} 
-                options={{ headerShown: false }} />
+                name="Frequencia"
+                component={AlunosFrequenciaScreen} />
+            <Stack.Screen
+                name="Material"
+                component={AlunosMaterialScreen}/>
+            <Stack.Screen
+                name="Notas"
+                component={AlunosNotasScreen} />
         </Stack.Navigator>
     );
 }
 
-export function AuthRoutes() {
-    const { userType } = useUser();
+export function AppRoutes() {
+    const { state } = useUser();
 
+    console.log(state);
     return (
         <>
             {
-                userType === "aluno" ?
+                state.user.permissao === "aluno" ?
                 <AlunosRoutes /> :
                 <ProfessorRoutes />
             }

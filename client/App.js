@@ -1,10 +1,24 @@
 import React from 'react';
-import { TelaLogin } from "./screens/TelaLogin";
-import { TelaProf1} from './screens/TelaProf1'
-import { TelaProfReact } from './screens/TelaProfReact';
+import { MateriaScreen } from './screens/ProfessorScreens/MateriaScreen';
+import { ProfessorHomeScreen } from './screens/ProfessorScreens/ProfessorHomeScreen';
 
 export default function App() {
     return (
-        <TelaProfReact/>
-    ) 
+        <MateriaScreen />
+    )
 }
+
+
+
+
+/*import React from 'react';
+import { AuthProvider } from './contexts/AuthContext';
+import { Router } from './routes';
+
+export default function App() {
+    return (
+        <AuthProvider>
+            <Router />
+        </AuthProvider>
+    )
+}*/
