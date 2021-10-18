@@ -56,15 +56,13 @@ async function getUser(req, res, next) {
     const userId = req.params.id
 
     try {
-
         const user = await User.findAll({ where: { id: userId } })
 
         if (!user) {
             throw new createHttpError(404, "Usuário não encontrado");
         }
 
-        return res.status(200).json(user)
-
+        return res.json(user)
     } catch (error) {
         console.log(error);
         next(error)

@@ -1,21 +1,29 @@
 const createHttpError = require("http-errors");
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {        
-    const token = req.headers.authorization?.split(" ")[1];
+module.exports = (permissions) => {
+    return (req, res, next) => {
+        const authToken = req.headers.authorization || "";
 
-    if (!token) {
-        next(createHttpError(401, "Token is missing"));
-    }
-    
-    try {
-        const payload = jwt.verify(token, process.env.TOKEN_SECRET);                        
-                        
-        res.locals.userId = payload.sub;
+        if (!authToken) {
+            next(createHttpError(401, "Token is missing"));
+        }
 
-        next();
-    } catch (error) {
-        console.log(error);
-        next(createHttpError(401, "Invalid Token"));
-    }       
+        const [, token] = authToken.split(" ");
+
+        try {
+            const payload = jwt.verify(token, process.env.TOKEN_SECRET);
+            
+            if (!permissions.includes(payload.permissao)) {
+                next(createHttpError(403, "You don't have permission"));    
+            }              
+
+            res.locals.userId = payload.sub;
+
+            next();
+        } catch (error) {
+            console.log(error);
+            next(createHttpError(401, "Invalid Token"));
+        }    
+    }    
 }
