@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 
-  //Rotas de aula
+  //Rotas de matéria
 
 //rota para ciar matéria
 async function createMateria(req, res, next) {
@@ -115,13 +115,3 @@ module.exports = {
     editMateria,
     deleteMateria
 }
-// d0ffeb azul claro
-// 71ff6f verde claro
-
-// 3b4a4a azul escuro
-// 009f39 verde escuro
-
-// linear-gradient(180deg, #000 25%, #777 25% 50%, #fff 50% 75%, #800080 75% 100%)
-// npx sequelize db:create
-// npx sequelize db:migrate
-// npx sequelize migration:generate --name create-aulas 
