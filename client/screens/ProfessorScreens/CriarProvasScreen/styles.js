@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
         flex: 0.6,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
     },
     userProf: {
         width: 100,
@@ -20,9 +19,6 @@ export const styles = StyleSheet.create({
     containerAcc: {
         marginHorizontal: 30,
 
-    },
-    containerItems: {
-        backgroundColor: 'red',
     },
 
     ViewInp: {

@@ -1,10 +1,12 @@
 import React from 'react';
 import { MateriaScreen } from './screens/ProfessorScreens/MateriaScreen';
 import { ProfessorHomeScreen } from './screens/ProfessorScreens/ProfessorHomeScreen';
+import { PressencaScreen } from './screens/ProfessorScreens/PressencaScreen'
+import { CriarProvasScreen } from './screens/ProfessorScreens/CriarProvasScreen';
 
 export default function App() {
     return (
-        <MateriaScreen />
+        <CriarProvasScreen />
     )
 }
 

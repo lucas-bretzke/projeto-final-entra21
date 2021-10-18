@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+
 import {
+    Button,
     View,
     Text,
+    Animated,
+    Image,
+    Pressable,
     KeyboardAvoidingView,
     TextInput,
-    Image,
-    Button,
-    Animated,
-    TouchableOpacity,
 
 } from 'react-native';
-import { styles } from './styles';
 import { List } from 'react-native-paper';
+import { styles } from './styles';
+import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
-import {ListItem} from '../../../components/comp-2'
-import UserProf from '../../../assets/UserProf.png';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TextInputMask } from 'react-native-masked-text';
 
-export function CriarProvasScreen() {
+
+export function PressencaScreen() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
-
-    const [expanded, setExpanded] = React.useState(true);
-    const handlePress = () => setExpanded(!expanded);
 
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export function CriarProvasScreen() {
                 toValue: 1,
                 speed: 500,
                 bounciness: 20,
-                useNativedriver: false
+                useNativeDriver: false
             }),
             Animated.timing(opacity, {
                 toValue: 10,
@@ -42,24 +42,26 @@ export function CriarProvasScreen() {
     }, []);
 
 
-    return (
-        <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#182e45', }}>
-            <Animated.View
 
+    return (
+        <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#182e45', }}>
+
+            <Animated.View
                 style={[styles.containerImg, {
                     opacity: opacity,
                     transform: [
                         { translateY: offset.y }
                     ]
-                }
-                ]}
+                }]}
 
             >
-                <Image style={styles.userProf} source={UserProf} />
+                <Image style={styles.imgUser}
+                    source={React2} />
             </Animated.View>
 
             <Animated.View
-                style={[styles.container2, {
+
+                style={[styles.containerList, {
                     opacity: opacity,
                     transform: [
                         { translateY: offset.y }
@@ -68,10 +70,21 @@ export function CriarProvasScreen() {
                 ]}
             >
 
-                <Accordion title="Criar Prova">
-                    <View style={styles.ViewInp}>
-                        <TextInput style={styles.inputName} placeholder="Nome da prova:" />
-                        <TextInput style={styles.inputData} placeholder="Nada da prova:" />
+                <Accordion title="Criar aula" icon="comment-arrow-right">
+                    <View style={styles.ViewInpP}>
+                        <TextInput style={styles.input1} placeholder="Nome da aula:" />
+                        <TextInput style={styles.input1} placeholder="Data da aula:" />
+                        <TextInput style={styles.input1} placeholder="Inserir link:" />
+                    </View>
+                    <TouchableOpacity style={styles.ButtonSlvr}>
+                        <Text style={styles.text}>Salvar</Text>
+                    </TouchableOpacity>
+                </Accordion>
+
+                <Accordion title="Aula 3 {if else}" description="10/06" icon="react">
+
+                    <View style={styles.ViewInP}>
+                        <TextInput style={styles.inputLink} placeholder="InserirLink:" />
                     </View>
 
                     <TouchableOpacity style={styles.ButtonSlvr}>
@@ -80,26 +93,20 @@ export function CriarProvasScreen() {
 
                 </Accordion>
 
-                <Accordion title="If else"
-                >
-
-                    <View style={styles.ViewInp}>
-                        <Text style={styles.textDaProva}>Lucas bretzke</Text>
-                        <TextInput style={styles.inpDaProva} placeholder="Nota:" />
-                    </View>
-
-
-                    <ListItem />
-
-
-                    <TouchableOpacity style={styles.ButtonSlvr}>
-                        <Text style={styles.text}>Salvar</Text>
-                    </TouchableOpacity>
-
-                </Accordion>
             </Animated.View>
         </KeyboardAvoidingView>
     );
+};
+
+/*
+<View>
+
+<View style={styles.ViewInp}>
+    <Text style={styles.textDaPre}>Lucas bretzke</Text>
+    <TextInput style={styles.input} placeholder="P / F" />
+</View>
+
+</View>
 
 
-}
+*/
