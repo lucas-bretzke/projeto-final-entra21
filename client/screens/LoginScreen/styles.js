@@ -61,6 +61,8 @@ export const styles = StyleSheet.create({
         padding: 10,
         marginHorizontal: 100,
         borderRadius: 20,
+        flexDirection: "row",
+        justifyContent: "space-evenly"
     },
 
 });

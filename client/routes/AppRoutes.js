@@ -8,6 +8,7 @@ import { AlunosFrequenciaScreen } from "../screens/AlunoScreens/Frequencia";
 import { AlunosMaterialScreen } from "../screens/AlunoScreens/Material";
 import { AlunosNotasScreen } from "../screens/AlunoScreens/Notas";
 import { useUser } from "../contexts/UserContext";
+import { PresencaScreen } from "../screens/ProfessorScreens/PresencaScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,9 @@ function ProfessorRoutes() {
             <Stack.Screen
                 name="MateriaReact"
                 component={MateriaScreen}  />
+            <Stack.Screen
+                name="Presenca"
+                component={PresencaScreen}  />
         </Stack.Navigator>
     );
 }

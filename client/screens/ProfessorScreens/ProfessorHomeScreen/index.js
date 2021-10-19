@@ -100,15 +100,17 @@ export function ProfessorHomeScreen({ navigation }) {
                                 <List.Item left={props => <List.Icon {...props}
                                     icon="book-multiple" />}
                                     style={styles.itemsList}
+                                    onPress={() => navigation.push("MateriaReact")} 
                                     title="Materiais" />
                                 <List.Item left={props => <List.Icon {...props}
                                     icon="numeric-9-plus-box-multiple" />}
                                     style={styles.itemsList}
+                                    onPress={() => navigation.push("CriarProvas")} 
                                     title="Notas" />
                                 <List.Item left={props => <List.Icon {...props}
                                     icon="calendar-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={() => navigation.push("MateriaReact")} 
+                                    style={styles.itemsList}     
+                                    onPress={() => navigation.push("Presenca")}                                
                                     title="Presença" 
                                 />
                             </List.Accordion>

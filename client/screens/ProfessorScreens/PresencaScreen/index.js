@@ -11,15 +11,13 @@ import {
     TextInput,
 
 } from 'react-native';
-import { List } from 'react-native-paper';
 import { styles } from './styles';
 import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TextInputMask } from 'react-native-masked-text';
 
 
-export function PressencaScreen() {
+export function PresencaScreen() {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 

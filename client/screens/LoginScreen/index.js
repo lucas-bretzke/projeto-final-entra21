@@ -9,6 +9,8 @@ import {
     Image,
     Animated,
     Keyboard,
+    ActivityIndicator,
+    Alert,
 } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
 import { AntDesign } from '@expo/vector-icons';
@@ -74,13 +76,16 @@ export function LoginScreen() {
         ]).start();
     }
 
+    const [isLoading, setIsLoading] = useState(false);
     const { authActions } = useAuth();
 
     async function handleSignIn() {
         try {
+            setIsLoading(true);
             await authActions.signIn(email, password);
         } catch (error) {
-            alert("Falha no login");
+            Alert.alert("Falha no login", "E-mail ou senha incorretos");
+            setIsLoading(false);
         }
     }
 
@@ -124,14 +129,16 @@ export function LoginScreen() {
                         placeholder="Senha:"
                         autoCorrect={false}
                         value={password}
+                        secureTextEntry
                         onChangeText={setPassword}
                     />
                 </View>
-                <TouchableOpacity style={styles.botao1}>
-                    <Text style={styles.textLink}>Esqueceu a senha?</Text>
-                </TouchableOpacity>
 
-                <TouchableOpacity style={styles.botao3} onPress={handleSignIn}>
+                <TouchableOpacity style={[styles.botao3, isLoading && { backgroundColor: "#ccc" }]} onPress={handleSignIn} disabled={isLoading}>
+                    {
+                        isLoading &&
+                        <ActivityIndicator size="small" color="#fff" />
+                    }                                        
                     <Text style={styles.textoBotao}>Entrar</Text>
                 </TouchableOpacity>
 
