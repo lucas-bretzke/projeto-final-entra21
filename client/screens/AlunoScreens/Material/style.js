@@ -2,14 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 0.4,
-        backgroundColor: "#C9D6D0",
-
-    },
-    container2: {
         flex: 1,
-        backgroundColor: "#C9D6D0",
-        alignItems: 'center',
+        backgroundColor: "#182e45",
     },
     imagemCoruja: {
         justifyContent: 'center',
@@ -17,8 +11,7 @@ export const styles = StyleSheet.create({
         height: 80,
         borderRadius: 150,
         marginVertical: 30,
-        marginHorizontal: 145,
-
+        alignSelf: "center"
     },
     botao: {
         alignItems: 'center',
@@ -29,5 +22,26 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         paddingLeft: 10,
         margin: 15,
+    },
+    containerAula: {
+        backgroundColor: "#fff",
+        padding: 10,
+        borderRadius: 5,
+    },    
+    inputLink: {
+        flex: 1,
+        backgroundColor: 'white',
+        padding: 5
+    },
+    ViewInp: {
+        backgroundColor: "white",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 5
+    },
+    textEmpty: {
+        color: "white",
+        textAlign: "center"
     }
 })

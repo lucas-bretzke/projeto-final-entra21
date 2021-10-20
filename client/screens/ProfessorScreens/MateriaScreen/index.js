@@ -9,21 +9,51 @@ import {
     Pressable,
     KeyboardAvoidingView,
     TextInput,
+    Alert,
+    ActivityIndicator,
+    ScrollView
 
 } from 'react-native';
-import { List } from 'react-native-paper';
 import { styles } from './styles';
-import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TextInputMask } from 'react-native-masked-text';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DatePicker } from '../../../components/DatePicker';
+import { api } from '../../../services/api';
+import moment from "moment";
 
+function Aula({item}) {
+    const data = moment(item.data).format("DD/MM/YYYY");
 
-export function MateriaScreen() {
+    const [descricao, setDescricao] = useState(item.descricao);
+
+    async function handleEditarAula() {
+        try {
+            (await api.put(`/aula/${item.id}`, { descricao })).data;
+            Alert.alert("Sucesso", "Link adicionado");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return (
+        <Accordion title={item.titulo} description={data} icon="book-open-variant">                   
+            <View style={styles.ViewInP}>
+                <TextInput style={styles.inputLink} placeholder="InserirLink:" value={descricao} onChangeText={setDescricao} />
+            </View>
+        
+            <TouchableOpacity style={styles.ButtonSlvr} onPress={handleEditarAula}>
+                <Text style={styles.text}>Salvar</Text>
+            </TouchableOpacity>                
+        </Accordion>
+    );
+}
+
+export function MateriaScreen({ route }) {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
-
+    const [aulas, setAulas] = useState([]);
 
     useEffect(() => {
         Animated.parallel([
@@ -41,96 +71,100 @@ export function MateriaScreen() {
         ]).start();
     }, []);
 
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        async function getAulas() {
+            try {
+                const aulas = (await api.get(`turmas/${route.params.materiaId}/aulas`)).data;
+
+                setAulas(aulas);
+            } catch (error) {
+                console.log(error);
+            }            
+            setLoading(false);
+        }
+
+        getAulas();        
+    }, []);
+
+    
+    const [nome, setNome] = useState("");
+    const [data, setData] = useState(new Date());
+    const [descricao, setDescricao] = useState("");
+
+    async function handleCriarAula() {
+        if (!nome) {
+            return Alert.alert("Erro", "Preencha o título da aula");
+        }        
+
+        try {
+            const aula = (await api.post("/aula", {titulo: nome, descricao, data, turmaId: route.params.materiaId})).data;
+            setAulas(prevAulas => [...prevAulas, aula]);
+            Alert.alert("Sucesso", "Aula cadastrada com sucesso!");
+        } catch (error) {
+            console.log(error);
+            Alert.alert("Erro", "Não foi possível criar a aula");
+        }
+
+        setNome("");
+        setData(new Date());
+        setDescricao("");
+    }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#182e45', }}>
+        <ScrollView style={{ backgroundColor: '#182e45' }}>
+            <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#182e45', }}>
 
-            <Animated.View
-                style={[styles.containerImg, {
-                    opacity: opacity,
-                    transform: [
-                        { translateY: offset.y }
-                    ]
-                }]}
+                <Animated.View
+                    style={[styles.containerImg, {
+                        opacity: opacity,
+                        transform: [
+                            { translateY: offset.y }
+                        ]
+                    }]}
 
-            >
-                <Image style={styles.imgUser}
-                    source={React2} />
-            </Animated.View>
+                >
+                    <Icon name={route.params.icone} size={100} color="white" style={styles.materiaIcone} />
+                </Animated.View>
 
-            <Animated.View
+                <Animated.View
+                    style={[styles.containerList, {
+                        opacity: opacity,
+                        transform: [
+                            { translateY: offset.y }
+                        ]
+                    }
+                    ]}
+                >
 
-                style={[styles.containerList, {
-                    opacity: opacity,
-                    transform: [
-                        { translateY: offset.y }
-                    ]
-                }
-                ]}
-            >
+                    <Accordion title="Criar aula" icon="comment-arrow-right">
+                        <View style={styles.ViewInpP}>
+                            <TextInput style={styles.input1} placeholder="Título da aula:" value={nome} onChangeText={setNome} />
+                            <DatePicker date={data} setDate={setData}/>
+                            <TextInput style={styles.input1} placeholder="Inserir link:" value={descricao} onChangeText={setDescricao} />
+                        </View>
+                        <TouchableOpacity style={styles.ButtonSlvr} onPress={handleCriarAula}>
+                            <Text style={styles.text}>Salvar</Text>
+                        </TouchableOpacity>
+                    </Accordion>
 
-                <Accordion title="Criar aula" icon="comment-arrow-right">
-                    <View style={styles.ViewInpP}>
-                        <TextInput style={styles.input1} placeholder="Nome da aula:" />
-                        <TextInput style={styles.input1} placeholder="Data da aula:" />
-                        <TextInput style={styles.input1} placeholder="Inserir link:" />
-                    </View>
-                    <TouchableOpacity style={styles.ButtonSlvr}>
-                        <Text style={styles.text}>Salvar</Text>
-                    </TouchableOpacity>
-                </Accordion>
+                    <Text style={styles.titleAula}>Aulas cadastradas</Text>
 
-                <Accordion title="Aula 3 {if else}" description="10/06" icon="react">
-                   
-                    <View style={styles.ViewInP}>
-                        <TextInput style={styles.inputLink} placeholder="InserirLink:" />
-                    </View>
-               
-                    <TouchableOpacity style={styles.ButtonSlvr}>
-                        <Text style={styles.text}>Salvar</Text>
-                    </TouchableOpacity>
-                  
-                </Accordion>
+                    { 
+                        loading ? 
+                            <ActivityIndicator size="small" color="#fff" />    
+                        :  <FlatList 
+                            data={aulas}
+                            renderItem={({item}) => <Aula item={item} />}
+                            keyExtractor={item => ""+item.id}                                    
+                        />
+                    }
 
-                <Accordion title="Aula 2 {if else}" description="09/06" icon="react">
-                   
-                   <View style={styles.ViewInP}>
-                       <TextInput style={styles.inputLink} placeholder="InserirLink:" />
-                   </View>
-              
-                   <TouchableOpacity style={styles.ButtonSlvr}>
-                       <Text style={styles.text}>Salvar</Text>
-                   </TouchableOpacity>
-                 
-               </Accordion>
 
-               <Accordion title="Aula 1 {if else}" description="08/06" icon="react">
-                   
-                   <View style={styles.ViewInP}>
-                       <TextInput style={styles.inputLink} placeholder="InserirLink:" />
-                   </View>
-              
-                   <TouchableOpacity style={styles.ButtonSlvr}>
-                       <Text style={styles.text}>Salvar</Text>
-                   </TouchableOpacity>
-                 
-               </Accordion>
-
-            </Animated.View>
-        </KeyboardAvoidingView>
+                
+                </Animated.View>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 };
-
-/*
-<View>
-                        
-<View style={styles.ViewInp}>
-    <Text style={styles.textDaPre}>Lucas bretzke</Text>
-    <TextInput style={styles.input} placeholder="P / F" />
-</View>
-
-</View>
-
-
-*/

@@ -1,13 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
-
-    containerImg: {
-        flex: 0.6,
-        justifyContent: 'center',
-        height: 100,
-        width: 100
-    },
+export const styles = StyleSheet.create({    
     containerList: {
         flex: 1
     },
@@ -31,8 +24,7 @@ export const styles = StyleSheet.create({
         padding: 10,
         margin: 3,
         borderRadius: 10,
-        borderWidth: 1,
-        marginHorizontal: 15
+        borderWidth: 1,        
     },
     input: {
         backgroundColor: 'white',
@@ -49,7 +41,7 @@ export const styles = StyleSheet.create({
     },
     ViewInpP: {
         backgroundColor: '#b5930c',
-        padding: 5
+        padding: 10
     },
     ViewInp: {
         padding: 10,
@@ -61,6 +53,14 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 8,
     },
-
-  
+    materiaIcone: {
+        textAlign: "center",
+        marginBottom: 30
+    },
+    titleAula: {
+        color: "#fff",
+        fontSize: 22,
+        textAlign: "center",
+        marginBottom: 5
+    }
 });

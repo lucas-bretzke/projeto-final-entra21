@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#182e45',
         borderColor: 'black',
+        paddingHorizontal: 20
     },
     containerImg: {
         flex: 0.7,
@@ -25,12 +26,10 @@ export const styles = StyleSheet.create({
     itemsList: {
         backgroundColor: "#dad8cc",
         margin: 4,
-        borderTopWidth: 0,
-        borderBottomWidth: 8,
-        borderLeftWidth: 0,
-        borderRightWidth: 10,
-        borderRadius: 3,
-
+    },
+    buttonSair: {
+        marginTop: StatusBar.currentHeight + 10,
+        alignSelf: "flex-end"
     }
 
 

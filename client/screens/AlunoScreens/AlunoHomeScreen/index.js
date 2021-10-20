@@ -9,14 +9,18 @@ import {
     Animated,
     Keyboard,
 } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { List } from 'react-native-paper';
 import { api } from '../../../services/api';
 import { styles } from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useAuth } from '../../../contexts/AuthContext';
 
-export function AlunoHomeScreen() {
+export function AlunoHomeScreen({ navigation }) {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
+    const { authActions } = useAuth();
 
     const [expanded, setExpanded] = React.useState(true);
 
@@ -47,17 +51,41 @@ export function AlunoHomeScreen() {
 
                 setTurmas(turmas);
             } catch (error) {
-                
+
             }
         }
 
         getTurmas();
     }, []);
 
+    function renderTurma({ item }) {
+        return (
+            <List.Section key={item.id} style={{ marginHorizontal: 30, }}>                
+                <List.Accordion
+                    title={item.nome}
+                    left={props => <List.Icon {...props} icon={item.icone} />}
+                    style={{
+                        backgroundColor: '#b38a0e',
+                        borderBottomWidth: 5
+                    }}
+                    description={item.descricao}
+                >
+                    <List.Item left={props => <List.Icon {...props}
+                        icon="book-multiple" />}
+                        style={styles.itemsList}
+                        onPress={() => navigation.push("Material", { materiaId: item.id })} title="Materiais" />
+                </List.Accordion>
+            </List.Section>
+        );
+    }
+
 
     return (
 
         < KeyboardAvoidingView style={styles.container}>
+            <TouchableOpacity onPress={() => authActions.signOut()} style={styles.buttonSair}>
+                    <Icon name="times-circle" size={44} color="white" />
+            </TouchableOpacity>
             <Animated.View
                 style={[styles.containerImg, {
                     opacity: opacity,
@@ -80,35 +108,12 @@ export function AlunoHomeScreen() {
                 }
                 ]}
             >
-
-
                 {
-                    turmas.map(turma => (
-                        <List.Section key={turma.id0} style={{ marginHorizontal: 30, }}>
-                            <List.Accordion
-                                title={turma.nome}
-                                left={props => <List.Icon {...props} icon={turma.icone} />}
-                                style={{
-                                    backgroundColor: '#b38a0e',
-                                    borderBottomWidth: 5
-                                }}
-                                description={turma.descricao}
-                            >
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="book-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={handlePress} title="Materiais" />
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="numeric-9-plus-box-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={handlePress} title="Notas" />
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="calendar-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={handlePress} title="Preseça" />
-                            </List.Accordion>
-                        </List.Section>
-                    ))
+                    <FlatList
+                        renderItem={renderTurma}
+                        data={turmas}
+                        keyExtractor={item => "" + item.id}
+                    />
                 }
             </Animated.View>
         </KeyboardAvoidingView>

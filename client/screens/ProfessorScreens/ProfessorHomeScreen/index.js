@@ -8,11 +8,14 @@ import {
     Image,
     Animated,
     Keyboard,
+    ActivityIndicator
 } from 'react-native';
 import { List } from 'react-native-paper';
 import { useAuth } from '../../../contexts/AuthContext';
 import { api } from '../../../services/api';
 import { styles } from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 
@@ -23,6 +26,7 @@ export function ProfessorHomeScreen({ navigation }) {
 
 
     const [expanded, setExpanded] = React.useState(true);    
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         Animated.parallel([
@@ -54,14 +58,44 @@ export function ProfessorHomeScreen({ navigation }) {
         }
 
         getTurmas();
+        setLoading(false);
     }, []);
 
     const { authActions } = useAuth();
 
+    function renderTurma({ item }) {
+        return (
+            <List.Section style={{ marginHorizontal: 30, }}>
+                <List.Accordion
+                    title={item.nome}
+                    left={props => <List.Icon {...props} icon={item.icone} />}
+                    style={{
+                        backgroundColor: '#b38a0e'                        
+                    }}
+                    description={item.descricao}
+                >
+                    <List.Item left={props => <List.Icon {...props}
+                        icon="book-multiple" />}
+                        style={styles.itemsList}
+                        onPress={() => navigation.push("Materiais", { title: item.name, materiaId: item.id, icone: item.icone })} 
+                        title="Materiais" />
+                    <List.Item left={props => <List.Icon {...props}
+                        icon="calendar-multiple" />}
+                        style={styles.itemsList}     
+                        onPress={() => navigation.push("Presenca", { title: item.name, materiaId: item.id, icone: item.icone })}                                 
+                        title="Presença" 
+                    />
+                </List.Accordion>
+            </List.Section>
+        );
+    }
+
 
     return (
-
-        < KeyboardAvoidingView style={styles.container}>
+        < KeyboardAvoidingView style={styles.container}>            
+            <TouchableOpacity onPress={() => authActions.signOut()} style={styles.buttonSair}>
+                    <Icon name="times-circle" size={44} color="white" />
+            </TouchableOpacity>
             <Animated.View
                 style={[styles.containerImg, {
                     opacity: opacity,
@@ -83,43 +117,17 @@ export function ProfessorHomeScreen({ navigation }) {
                     ]
                 }
                 ]}
-            >
-
-                {
-                    turmas.map(turma => (
-                        <List.Section style={{ marginHorizontal: 30, }}>
-                            <List.Accordion
-                                title={turma.nome}
-                                left={props => <List.Icon {...props} icon={turma.icone} />}
-                                style={{
-                                    backgroundColor: '#b38a0e',
-                                    borderBottomWidth: 5
-                                }}
-                                description={turma.descricao}
-                            >
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="book-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={() => navigation.push("MateriaReact")} 
-                                    title="Materiais" />
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="numeric-9-plus-box-multiple" />}
-                                    style={styles.itemsList}
-                                    onPress={() => navigation.push("CriarProvas")} 
-                                    title="Notas" />
-                                <List.Item left={props => <List.Icon {...props}
-                                    icon="calendar-multiple" />}
-                                    style={styles.itemsList}     
-                                    onPress={() => navigation.push("Presenca")}                                
-                                    title="Presença" 
-                                />
-                            </List.Accordion>
-                        </List.Section>
-                    ))
+            >                
+                { 
+                    loading ? 
+                        <ActivityIndicator size="small" color="#fff" />    
+                    : <FlatList 
+                        data={turmas}
+                        renderItem={renderTurma}
+                        keyExtractor={item => "" + item.id}
+                    />
                 }
-                <TouchableOpacity onPress={() => authActions.signOut()}>
-                    <Text>Sair</Text>
-                </TouchableOpacity>
+                
             </Animated.View>
         </KeyboardAvoidingView>
     );

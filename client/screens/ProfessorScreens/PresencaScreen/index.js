@@ -9,15 +9,74 @@ import {
     Pressable,
     KeyboardAvoidingView,
     TextInput,
-
+    ActivityIndicator,
+    FlatList,
+    Alert
 } from 'react-native';
 import { styles } from './styles';
-import React2 from '../../../assets/react22.png';
 import { Accordion } from '../../../components/Accordion';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { api } from '../../../services/api';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import moment from "moment";
+
+function Aluno({ aluno }) {    
+    const [presente, setPresente] = useState(false);
+
+    return (
+        <View style={styles.alunoContainer}>
+            <Text>{aluno.name}</Text>
+            <TouchableOpacity onPress={() => setPresente(prevState => !prevState)} style={[styles.checkbox, presente && { backgroundColor: "#2e6e1d", borderColor: "#2e6e1d"}]}>
+                {
+                    presente &&
+                    <Icon name="check-bold" size={25} color="#fff" />
+                }                
+            </TouchableOpacity>                                        
+        </View>
+    );
+}
+
+function Aula({ item, turmaId }) {
+    const data = moment(item.data).format("DD/MM/YYYY");
+    const [alunos, setAlunos] = useState([]);
+
+    useEffect(() => {
+        async function getAlunosFromTurma() {
+            try {
+                const alunos = (await api.get(`/turmas/${turmaId}/alunos`)).data;                
+                setAlunos(alunos);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getAlunosFromTurma();
+    }, []);
 
 
-export function PresencaScreen() {
+    function handleSalvarPresenca() {
+        Alert.alert("Sucesso", "Presença cadastrada com sucesso!");
+    }
+
+    return (
+        <Accordion title={item.titulo} description={data} icon="book-open-variant">
+            <View style={styles.cabecalho}>
+                <Text style={styles.cabecalhoText}>Aluno</Text>
+                <Text style={styles.cabecalhoText}>Presente</Text>
+            </View>
+            <FlatList
+                keyExtractor={item => "" + item.id}
+                data={alunos}
+                renderItem={({ item }) => <Aluno aluno={item} />}
+            />            
+            <TouchableOpacity style={styles.ButtonSlvr} onPress={handleSalvarPresenca}>
+                <Text style={styles.text}>Salvar</Text>
+            </TouchableOpacity>
+        </Accordion>
+    );
+}
+
+export function PresencaScreen({ route }) {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 100 }));
     const [opacity] = useState(new Animated.Value(0));
 
@@ -39,6 +98,25 @@ export function PresencaScreen() {
         ]).start();
     }, []);
 
+    const [aulas, setAulas] = useState([]);
+
+    useEffect(() => {        
+        async function getAulas() {
+            try {
+                const aulas = (await api.get(`turmas/${route.params.materiaId}/aulas`)).data;
+
+                setAulas(aulas);
+            } catch (error) {
+                console.log(error);
+            }
+            setLoading(false);
+        }
+
+        getAulas();
+    }, []);
+
+    const [loading, setLoading] = useState(true);
+
 
 
     return (
@@ -53,8 +131,7 @@ export function PresencaScreen() {
                 }]}
 
             >
-                <Image style={styles.imgUser}
-                    source={React2} />
+                <Icon name={route.params.icone} size={100} color="white" style={styles.materiaIcone} />
             </Animated.View>
 
             <Animated.View
@@ -68,43 +145,18 @@ export function PresencaScreen() {
                 ]}
             >
 
-                <Accordion title="Criar aula" icon="comment-arrow-right">
-                    <View style={styles.ViewInpP}>
-                        <TextInput style={styles.input1} placeholder="Nome da aula:" />
-                        <TextInput style={styles.input1} placeholder="Data da aula:" />
-                        <TextInput style={styles.input1} placeholder="Inserir link:" />
-                    </View>
-                    <TouchableOpacity style={styles.ButtonSlvr}>
-                        <Text style={styles.text}>Salvar</Text>
-                    </TouchableOpacity>
-                </Accordion>
-
-                <Accordion title="Aula 3 {if else}" description="10/06" icon="react">
-
-                    <View style={styles.ViewInP}>
-                        <TextInput style={styles.inputLink} placeholder="InserirLink:" />
-                    </View>
-
-                    <TouchableOpacity style={styles.ButtonSlvr}>
-                        <Text style={styles.text}>Salvar</Text>
-                    </TouchableOpacity>
-
-                </Accordion>
+                {
+                    loading ?
+                        <ActivityIndicator size="small" color="#fff" />
+                        : <FlatList
+                            data={aulas}
+                            renderItem={({ item }) => <Aula item={item} turmaId={route.params.materiaId} />}
+                            keyExtractor={item => "" + item.id}
+                            ListEmptyComponent={<Text style={styles.textEmpty}>Não há aulas cadastradas</Text>}
+                        />
+                }
 
             </Animated.View>
         </KeyboardAvoidingView>
     );
 };
-
-/*
-<View>
-
-<View style={styles.ViewInp}>
-    <Text style={styles.textDaPre}>Lucas bretzke</Text>
-    <TextInput style={styles.input} placeholder="P / F" />
-</View>
-
-</View>
-
-
-*/

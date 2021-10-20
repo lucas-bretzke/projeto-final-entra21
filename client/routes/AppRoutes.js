@@ -15,10 +15,10 @@ const Stack = createNativeStackNavigator();
 function ProfessorRoutes() {
     return (
         <Stack.Navigator 
-            initialRouteName="SignIn"
+            initialRouteName="HomeProfessor"
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: "black"
+                    backgroundColor: "#152036"
                 },
                 headerTintColor: "#fff",
                 headerTitleStyle: {
@@ -28,17 +28,23 @@ function ProfessorRoutes() {
                 headerTitleAlign: "center"
             }}>
             <Stack.Screen
+                options={{ headerShown: false }}
                 name="HomeProfessor"
                 component={ProfessorHomeScreen} />
             <Stack.Screen
                 name="CriarProvas"
                 component={CriarProvasScreen} />
             <Stack.Screen
-                name="MateriaReact"
-                component={MateriaScreen}  />
+                name="Materiais"
+                component={MateriaScreen}  
+                options={({ route }) => ({ title: route.params.title })}
+            />
             <Stack.Screen
                 name="Presenca"
-                component={PresencaScreen}  />
+                component={PresencaScreen}  
+                options={{ title: "Presença" }}
+                />
+                
         </Stack.Navigator>
     );
 }
@@ -46,10 +52,10 @@ function ProfessorRoutes() {
 function AlunosRoutes() {
     return (
         <Stack.Navigator 
-            initialRouteName="SignIn"
+            initialRouteName="AlunoHome"
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: "black"
+                    backgroundColor: "#152036"
                 },
                 headerTintColor: "#fff",
                 headerTitleStyle: {
@@ -60,7 +66,8 @@ function AlunosRoutes() {
             }}>
             <Stack.Screen
                 name="AlunoHome"
-                component={AlunoHomeScreen}/>
+                component={AlunoHomeScreen}
+                options={{ headerShown: false }} />
             <Stack.Screen
                 name="Frequencia"
                 component={AlunosFrequenciaScreen} />

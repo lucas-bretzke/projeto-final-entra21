@@ -8,13 +8,13 @@ const path = require("path");
 
 //rota para ciar aula
 async function createAula(req, res, next) {
-    const { titulo, descricao, data, materia_id } = req.body
+    const { titulo, descricao, data, turmaId } = req.body
     const file = req.file
 
     try {
         const [aula, created] = await Aula.findOrCreate({
             where: { titulo: titulo },
-            defaults: { descricao, data, materia_id }
+            defaults: { descricao, data, turma_id: turmaId }
         });
 
         if (!created) {

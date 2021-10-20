@@ -40,7 +40,7 @@ export function UserProvider({ children }) {
                 dispatch({ type: "GET_USER", user });
             } catch (err) {                
                 if (err.response?.status === 401) {
-                    auth.memoContext.signOut();
+                    auth.authActions.signOut();
                 }
             }                                                                                  
         }
